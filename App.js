@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MapView from 'react-native-maps';
-import { StyleSheet, Dimensions } from 'react-native';
+import { styles } from './AppStyles.js';
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+    <View style={styles.container}>
       <Button
         title="Go to Map"
         onPress={() => navigation.navigate('Map')}
@@ -26,24 +25,16 @@ function MapScreen() {
           longitude: -84.387985, //coords of Atlanta, but want to get coords of phone in the future
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
+
+          /*latitude: Location().latitude,
+          longitude: Location().longitude, TO DO: connect location var from Location.js to here
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,*/
         }}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-});
 
 const Stack = createStackNavigator();
 
